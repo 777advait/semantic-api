@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  pipeline:
+    image: wne3containers.azurecr.io/backend-pipeline:v0.1.0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11400:11400"
+    volumes:
+      - ./ollama:/app/ollama
+    command: ["ollama", "start", "--model", "artifish/llama3.2-uncensored:latest"]
+
+volumes:
+  ollama:

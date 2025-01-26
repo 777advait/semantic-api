@@ -1,5 +1,4 @@
 import ollama
-from datetime import datetime
 
 
 chosen_model = 'artifish/llama3.2-uncensored:latest'
@@ -25,8 +24,7 @@ async def extract_description(_prompt_: str) -> str:
     try:
         response = ollama.generate(
             model=chosen_model,
-            prompt=f"Identify the theme/description in {
-                _prompt_}. For example, in the phrase Batman Coffee Mug, you have to identify Batman as the theme/description. Respond with just the description/theme (like in my case, you just have to output Batman) and nothing else",
+            prompt=f"Identify the theme/description in {_prompt_}. For example, in the phrase Batman Coffee Mug, you have to identify Batman as the theme/description. Respond with just the description/theme (like in my case, you just have to output Batman) and nothing else",
         )
         description = response.get('response', '').strip()
 
@@ -42,8 +40,7 @@ async def enhance_prompt(_theme_: str) -> str:
     try:
         response = ollama.generate(
             model=chosen_model,
-            prompt=f"Enhance the following prompt: {
-                _theme_} to make it suitable for image generation. Only output the enhanced prompt and nothing else",
+            prompt=f"Enhance the following prompt: {_theme_} to make it suitable for image generation. Only output the enhanced prompt and nothing else",
         )
         enhance = response.get('response', '').strip()
 

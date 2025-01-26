@@ -3,3 +3,4 @@ fastapi
 pydantic_settings
 python-dotenv
 azure-storage-blob
+uvicorn[standard]
