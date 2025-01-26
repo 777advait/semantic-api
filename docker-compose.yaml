@@ -14,7 +14,7 @@ services:
       - "11400:11400"
     volumes:
       - ./ollama:/app/ollama
-    command: ["ollama", "start", "--model", "artifish/llama3.2-uncensored:latest"]
+    command: ["ollama", "pull", "artifish/llama3.2-uncensored:latest"]
 
 volumes:
   ollama:
