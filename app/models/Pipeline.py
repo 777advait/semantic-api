@@ -7,4 +7,3 @@ class PipelineRequest(BaseModel):
 
 class PipelineResponse(BaseModel):
     image_url: str
-    mockup_url: str

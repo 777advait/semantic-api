@@ -15,11 +15,6 @@ class BlobStorage:
             blob_client.upload_blob(
                 data, content_settings=ContentSettings(content_type="image/png"))
 
-            print(
-                f"Blob {blob_name} uploaded to container {
-                    settings.GENERATED_IMAGES_CONTAINER_NAME}"
-            )
-
             return blob_client.url
 
         except Exception as e:

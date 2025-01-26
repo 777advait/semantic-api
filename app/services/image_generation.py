@@ -9,9 +9,6 @@ def generate_image(user_input: ImageGenerationRequest):
 
     prompt = user_input.prompt.strip()
 
-    print(settings.HF_ACCESS_TOKEN)
-    print(settings.HF_API_ENDPOINT)
-
     if not prompt:
         raise HTTPException(status_code=400, detail="Please enter a prompt")
 
@@ -36,8 +33,6 @@ def generate_image(user_input: ImageGenerationRequest):
 
         image_url = blob_storage.upload_generated_image(
             blob_name=f"generated_images/{prompt.replace(' ', '_')}.png", data=response.content)
-
-        print(image_url)
 
         return ImageGenerationResponse(image_url=image_url)
 
