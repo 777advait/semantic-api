@@ -1,6 +1,6 @@
 services:
   pipeline:
-    image: wne3containers.azurecr.io/backend-pipeline:v0.1.0
+    image: wne3containers.azurecr.io/backend-pipeline:v0.1.1
     ports:
       - "8000:8000"
     depends_on:
