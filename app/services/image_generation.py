@@ -1,8 +1,16 @@
+from datetime import datetime
+import uuid
 from fastapi import HTTPException
 import requests
 from app.core.blob_storage import blob_storage
 from app.models.ImageGeneration import ImageGenerationRequest, ImageGenerationResponse
 from app.core.config import settings
+
+
+def generate_unique_filename(extension='png'):
+    unique_id = uuid.uuid4()
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    return f"image_{timestamp}_{unique_id}.{extension}"
 
 
 def generate_image(user_input: ImageGenerationRequest):
@@ -32,7 +40,7 @@ def generate_image(user_input: ImageGenerationRequest):
         # return ImageGenerationResponse(image_url=f"http://localhost:8000/{image_path}")
 
         image_url = blob_storage.upload_generated_image(
-            blob_name=f"generated_images/{prompt.replace(' ', '_')}.png", data=response.content)
+            blob_name=generate_unique_filename(), data=response.content)
 
         return ImageGenerationResponse(image_url=image_url)
 
